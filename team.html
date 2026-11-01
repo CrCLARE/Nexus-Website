@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus 开发团队 - CrCLARE Studio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #18181b;
+      color: #e4e4e7;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-image: radial-gradient(circle at 50% 0%, rgba(96, 165, 250, 0.15), transparent 50%);
+      background-repeat: no-repeat;
+    }
+    
+    .team-card {
+      background-color: #202023;
+      border: 1px solid #3f3f46;
+      border-radius: 16px;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .team-card:hover {
+      transform: translateY(-8px);
+      border-color: #60a5fa;
+      box-shadow: 0 20px 40px -10px rgba(96, 165, 250, 0.15);
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      display: inline-block;
+      border-radius: 50%;
+      padding: 4px;
+      background: linear-gradient(135deg, #3f3f46 0%, #27272a 100%);
+      transition: background 0.3s ease;
+    }
+
+    .team-card:hover .avatar-wrapper {
+      background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+    }
+
+    .avatar-img {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #202023;
+      background-color: #18181b;
+    }
+
+    .role-badge {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      background-color: rgba(96, 165, 250, 0.1);
+      color: #93c5fd;
+      border: 1px solid rgba(96, 165, 250, 0.2);
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body class="min-h-screen py-20 px-6">
+
+  <div class="max-w-6xl mx-auto">
+    
+    <div class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 mb-4 tracking-tight">
+        Nexus 开发团队
+      </h1>
+      <p class="text-gray-400 text-[15px] md:text-lg max-w-2xl mx-auto leading-relaxed">
+        汇聚极客与创造力，<br class="hidden md:block">我们是 <span class="text-white font-bold">Nexus</span> 与 CrCLARE 生态背后的构筑者。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- CLARE -->
+      <div class="team-card p-6 flex flex-col items-center text-center">
+        <div class="avatar-wrapper mb-4">
+          <img src="./avater/clare.jpg" alt="CLARE" class="avatar-img">
+        </div>
+        <h3 class="text-xl font-bold text-white mb-2">CLARE</h3>
+        <div class="role-badge">主创 / 全栈开发</div>
+      </div>
+
+      <!-- 大米粥 -->
+      <div class="team-card p-6 flex flex-col items-center text-center">
+        <div class="avatar-wrapper mb-4">
+          <img src="./avater/damizhou.jpg" alt="大米粥" class="avatar-img">
+        </div>
+        <h3 class="text-xl font-bold text-white mb-2">大米粥</h3>
+        <div class="role-badge" style="background-color: rgba(52, 211, 153, 0.1); color: #34d399; border-color: rgba(52, 211, 153, 0.2);">视觉与 UI/UX 设计</div>
+      </div>
+
+      <!-- 老北 -->
+      <div class="team-card p-6 flex flex-col items-center text-center">
+        <div class="avatar-wrapper mb-4">
+          <img src="./avater/laobei.jpg" alt="老北" class="avatar-img">
+        </div>
+        <h3 class="text-xl font-bold text-white mb-2">老北</h3>
+        <div class="role-badge" style="background-color: rgba(156, 163, 175, 0.1); color: #9ca3af; border-color: rgba(156, 163, 175, 0.2);">质量测试 / 安全审计</div>
+      </div>
+
+      <!-- 蝶衣 -->
+      <div class="team-card p-6 flex flex-col items-center text-center">
+        <div class="avatar-wrapper mb-4">
+          <img src="./avater/dieyi.jpg" alt="蝶衣" class="avatar-img">
+        </div>
+        <h3 class="text-xl font-bold text-white mb-2">蝶衣</h3>
+        <div class="role-badge" style="background-color: rgba(244, 114, 182, 0.1); color: #f472b6; border-color: rgba(244, 114, 182, 0.2);">文档 / 开发者支持</div>
+      </div>
+
+      <!-- 云 -->
+      <div class="team-card p-6 flex flex-col items-center text-center">
+        <div class="avatar-wrapper mb-4">
+          <img src="./avater/xiaoyun.jpg" alt="云" class="avatar-img">
+        </div>
+        <h3 class="text-xl font-bold text-white mb-2">云</h3>
+        <div class="role-badge" style="background-color: rgba(251, 191, 36, 0.1); color: #fbbf24; border-color: rgba(251, 191, 36, 0.2);">产品策划 / 体验打磨</div>
+      </div>
+
+      <!-- rain -->
+      <div class="team-card p-6 flex flex-col items-center text-center">
+        <div class="avatar-wrapper mb-4">
+          <img src="./avater/rain.jpg" alt="rain" class="avatar-img">
+        </div>
+        <h3 class="text-xl font-bold text-white mb-2">rain</h3>
+        <div class="role-badge" style="background-color: rgba(167, 139, 250, 0.1); color: #a78bfa; border-color: rgba(167, 139, 250, 0.2);">后端逻辑 / 密码学</div>
+      </div>
+
+    </div>
+
+    <div class="mt-20 text-center text-gray-500 text-sm">
+      <p>© 2026 CrCLARE Studio. 保留所有权利。</p>
+      <p class="mt-2 font-medium tracking-wide">"Create wonderful code, Build a wonderful world."</p>
+    </div>
+
+  </div>
+
+</body>
+</html>
