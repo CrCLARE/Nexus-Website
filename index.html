@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus - 现代 Web 的终极身份枢纽</title>
+  <meta name="description" content="Nexus 是一款基于 Cloudflare Workers 和 D1 的轻量级零信任单点登录（SSO）平台。零服务器成本，支持硬件级 Passkey 认证。">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* 极客暗黑底色 */
+    body {
+      background-color: #0b0b0e;
+      color: #e4e4e7;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-image: 
+        radial-gradient(circle at 50% -20%, rgba(96, 165, 250, 0.15), transparent 60%),
+        radial-gradient(circle at 100% 50%, rgba(167, 139, 250, 0.05), transparent 50%);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    /* 渐变文字 */
+    .text-gradient {
+      background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* 毛玻璃导航栏 */
+    .glass-nav {
+      background: rgba(11, 11, 14, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(63, 63, 70, 0.5);
+    }
+
+    /* 特性卡片 */
+    .feature-card {
+      background: rgba(32, 32, 35, 0.6);
+      border: 1px solid #27272a;
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+    .feature-card:hover {
+      border-color: #60a5fa;
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px -10px rgba(96, 165, 250, 0.2);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- 顶部导航 -->
+  <header class="glass-nav fixed top-0 w-full z-50">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#18181b" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <span class="text-xl font-bold text-white tracking-wide">Nexus</span>
+      </div>
+      <nav class="hidden md:flex items-center gap-6 text-[14px] font-medium text-gray-400">
+        <a href="#features" class="hover:text-white transition-colors">核心特性</a>
+        <a href="#architecture" class="hover:text-white transition-colors">双轨架构</a>
+        <a href="./team.html" class="hover:text-white transition-colors">开发团队</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <a href="https://github.com/CrCLARE/Nexus" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path></svg>
+        </a>
+        <a href="./login.html" class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[14px] font-semibold transition-colors border border-white/10">
+          登录
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主体内容 -->
+  <main class="flex-grow pt-32">
+    
+    <!-- Hero 区域 -->
+    <section class="max-w-6xl mx-auto px-6 text-center mt-10 mb-24">
+      <div class="inline-block mb-4 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-[13px] font-semibold tracking-wide">
+        Welcome to this Galaxy
+      </div>
+      <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight mb-6 leading-tight">
+        现代 Web 的<br/>
+        <span class="text-gradient">终极身份枢纽</span>
+      </h1>
+      <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed mb-10">
+        Nexus 是一款完全采用纯 JavaScript 编写的轻量级、开源单点登录（SSO）平台。<br class="hidden md:block">
+        专为零服务器成本和极致性能而设计，为您的生态注入企业级零信任安全。
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://github.com/CrCLARE/Nexus" target="_blank" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white font-bold text-[15px] transition-all shadow-lg shadow-blue-500/25">
+          在 GitHub 上查看
+        </a>
+        <a href="https://sso.crclare.top" target="_blank" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#27272a] hover:bg-[#3f3f46] border border-[#3f3f46] text-white font-bold text-[15px] transition-colors">
+          阅读文档
+        </a>
+      </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="max-w-6xl mx-auto px-6 mb-24">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white mb-4">为什么选择 Nexus？</h2>
+        <p class="text-gray-400">摆脱厂商绑架，重新定义你的数字身份底座。</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="feature-card p-6">
+          <div class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400 mb-4">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">零信任安全</h3>
+          <p class="text-[13.5px] text-gray-400 leading-relaxed">全面支持 WebAuthn/Passkey 硬件密钥（如 YubiKey），物理级防钓鱼。</p>
+        </div>
+
+        <div class="feature-card p-6">
+          <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400 mb-4">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">极速 Serverless</h3>
+          <p class="text-[13.5px] text-gray-400 leading-relaxed">100% 运行于 Cloudflare 边缘网络，零 VPS 成本，毫秒级全球延迟。</p>
+        </div>
+
+        <div class="feature-card p-6">
+          <div class="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">无缝升级/降级</h3>
+          <p class="text-[13.5px] text-gray-400 leading-relaxed">云端与自托管版本共享 1:1 数据库结构，数据主权随时由你掌控。</p>
+        </div>
+
+        <div class="feature-card p-6">
+          <div class="w-10 h-10 rounded-lg bg-pink-500/20 flex items-center justify-center text-pink-400 mb-4">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">14 国语言</h3>
+          <p class="text-[13.5px] text-gray-400 leading-relaxed">原生 i18n 支持，从中文到阿拉伯语，打破全球开发者的语言壁垒。</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 架构简述 -->
+    <section id="architecture" class="max-w-4xl mx-auto px-6 mb-24">
+      <div class="bg-[#202023] border border-[#3f3f46] rounded-2xl p-8 md:p-12 shadow-2xl">
+        <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+          <span class="w-2 h-6 bg-blue-500 rounded-full inline-block"></span>
+          双轨架构，数据主权归一
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h4 class="text-lg font-semibold text-white mb-2">☁️ 云端版 (V1.0)</h4>
+            <p class="text-[14px] text-gray-400 leading-relaxed">Cloudflare Workers + D1 + KV。<br>零运维，零成本，适合独立开发者与极简主义者的首选。</p>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold text-white mb-2">🐳 自托管版 (V2.0 - Roadmap)</h4>
+            <p class="text-[14px] text-gray-400 leading-relaxed">Golang + Vue 3 + PostgreSQL + Docker。<br>绝对的数据掌控权，适合企业内网或 NAS 玩家。</p>
+          </div>
+        </div>
+        <div class="mt-6 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg text-[13.5px] text-blue-300">
+          <strong>魔法承诺：</strong> 无论你在云端还是本地，数据库表结构完全镜像，迁移只需几分钟。
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 页脚：版权与协议声明 -->
+  <footer class="border-t border-[#27272a] bg-[#0b0b0e] py-10 mt-auto">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <div class="text-center md:text-left">
+        <p class="text-gray-400 text-sm font-medium">
+          © 2026 <span class="text-white">CrCLARE Studio</span>. 保留所有权利。
+        </p>
+        <p class="text-gray-500 text-[13px] mt-2 flex flex-wrap justify-center md:justify-start items-center gap-1">
+          本项目基于 
+          <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" class="text-blue-400 hover:text-blue-300 underline underline-offset-2 transition-colors">
+            GNU Affero General Public License v3.0 (AGPL-3.0)
+          </a> 
+          协议开源分发。
+        </p>
+      </div>
+
+      <div class="flex items-center gap-6 text-sm text-gray-400 font-medium">
+        <a href="https://github.com/CrCLARE/Nexus" target="_blank" class="hover:text-white transition-colors">GitHub</a>
+        <a href="https://dev.crclare.top" target="_blank" class="hover:text-white transition-colors">Docs</a>
+        <a href="./team.html" class="hover:text-white transition-colors">Team</a>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
